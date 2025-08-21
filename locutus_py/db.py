@@ -4,6 +4,9 @@ from mysql.connector import Error
 from config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS
 
 def get_connection():
+    """
+    Establishes a connection to the MySQL database.
+    """
     return mysql.connector.connect(
         host=DB_HOST,
         port=DB_PORT,
@@ -17,6 +20,9 @@ def get_connection():
 # - alliances: alliance_id (PK), name, offshore (bool)
 
 def create_tables():
+    """
+    Creates the users and alliances tables in the database.
+    """
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute('''
