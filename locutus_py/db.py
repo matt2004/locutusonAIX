@@ -50,7 +50,7 @@ import requests
 
 def get_nation_by_id(nation_id):
     # Fetch a nation from the P&W API
-    url = f"https://api.politicsandwar.com/graphql?query={{nation(id:{nation_id}){id leadername nationname allianceid alliancename score cities soldiers tanks aircraft ships defcon spies missiles nukes vmode beige_turns activity}}}"
+    url = "https://api.politicsandwar.com/graphql?query={{nation(id:" + str(nation_id) + ") {id leadername nationname allianceid alliancename score cities soldiers tanks aircraft ships defcon spies missiles nukes vmode beige_turns activity}}}"
     resp = requests.get(url)
     if resp.status_code != 200:
         return None
@@ -59,7 +59,7 @@ def get_nation_by_id(nation_id):
 
 def get_alliance_nations(alliance_id):
     # Fetch all nations in an alliance from the P&W API
-    url = f"https://api.politicsandwar.com/graphql?query={{nations(alliance_id:{alliance_id}){id leadername nationname score cities soldiers tanks aircraft ships defcon spies missiles nukes vmode beige_turns activity}}}"
+    url = "https://api.politicsandwar.com/graphql?query={{nations(alliance_id:" + str(alliance_id) + ") {id leadername nationname score cities soldiers tanks aircraft ships defcon spies missiles nukes vmode beige_turns activity}}}"
     resp = requests.get(url)
     if resp.status_code != 200:
         return []
@@ -68,7 +68,7 @@ def get_alliance_nations(alliance_id):
 
 def get_active_wars(nation_id):
     # Fetch active wars for a nation from the P&W API
-    url = f"https://api.politicsandwar.com/graphql?query={{wars(nation_id:{nation_id},status:active){id attacker_id defender_id status}}}"
+    url = "https://api.politicsandwar.com/graphql?query={{wars(nation_id:" + str(nation_id) + ",status:active){id attacker_id defender_id status}}}"
     resp = requests.get(url)
     if resp.status_code != 200:
         return []
